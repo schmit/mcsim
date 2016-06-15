@@ -1,4 +1,5 @@
 from mcsim.core import *
+from mcsim.utility import log_state
 
 
 def config_to_state(state, config, log):
@@ -34,3 +35,6 @@ def test_simple_chain():
 def test_simulate():
     outcome = simulate([], 10)
     assert len(outcome) == 10
+
+def test_simulate_lazy():
+    assert False, "Write test"

@@ -1,1 +1,1 @@
-from .core import simulate, log_state
+from .core import simulate

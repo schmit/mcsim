@@ -1,3 +1,6 @@
+from itertools import repeat
+
+
 def simulate_one(chain, config={}):
     """
     Simulate a chain once
@@ -38,10 +41,26 @@ def simulate(chain, nsim, config={}):
 
     return [simulate_one(chain, config) for _ in range(nsim)]
 
-def log_state(state, config, log):
+def simulate_lazy(chain, nsim, config={}):
     """
-    Log the current state
+    Simulate a chain of functions a number of times and aggregate the logs lazily.
+    That is, computation will wait till results are needed by some other function.
+
+    Each function in the chain can write to the log to record outcomes.
+    Note that the state is not saved: everything needs to be looged explicitly.
+    The helper function log_state can be used to log the state
+
+    Args:
+        - chain: an iterable with functions of type
+            f(state, config, log) -> new_state
+        - nsim: number of simulations to perform
+        - config: pass configuration parameters in a dictionary
+
+    Returns:
+        List with the log of each simulation
     """
-    log.update(state)
-    return state
+    assert hasattr(chain, '__contains__'), "Chain needs to be iterable"
+    assert nsim > 0, "nsim > 0"
+
+    return repeat(simulate_one(chain, config), nsim)
 

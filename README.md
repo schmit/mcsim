@@ -1,7 +1,20 @@
-# mc_sim
-Simple framework for monte carlo simulations
+# MCSim
 
-# Example
+Simple framework for Monte Carlo simulations in Python3.
+
+The idea is by adding some structure to how to conduct simulations,
+it is much easier to create more intricate simulations that can easily be adapted
+to different scenarios by adding and removing bits and pieces as desired.
+
+## Setup
+
+Clone and install using
+
+```
+pip3 install ./
+```
+
+## Example
 
 Here a simple example that shows how to approximate pi using monte carlo simulation
 and this little framework

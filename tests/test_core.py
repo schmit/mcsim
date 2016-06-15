@@ -1,6 +1,9 @@
 from mcsim.core import *
 
-def identity(state, log):
+
+def config_to_state(state, config, log):
+    state = {}
+    state.update(config)
     return state
 
 def test_empty_chain():
@@ -10,18 +13,18 @@ def test_empty_chain():
     log = simulate_one([])
     assert log == {}
 
-def test_initial_state():
+def test_config():
     """
     Test that initial state works
     """
-    initial_state = {"x": 1}
-    log = simulate_one([log_state], initial_state=initial_state)
-    assert log == initial_state
+    config = {"x": 1}
+    log = simulate_one([config_to_state, log_state], config=config)
+    assert log == config
 
 def test_simple_chain():
     log = simulate_one(
-            [ lambda state, log: 1
-            , lambda state, log: state
+            [ lambda state, config, log: 1
+            , lambda state, config, log: state
             ]
             , {}
         )

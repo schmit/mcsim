@@ -14,33 +14,45 @@ Clone and install using
 pip3 install ./
 ```
 
+## Motivation
+
+Often I have to write some simulations for research and I try to write some nice code
+that can easily be re-used.
+However, time and time again the one change to do a different simulation requires
+an a complete rewrite:
+suddenly an extra parameter has to be passed down to a new function
+which requires restructuring all code.
+
+The idea of this little framework is to impose a simple structure on simulations
+where each simulation is a bunch of transformations combined with some logging.
+Hopefully that makes it much easier to change certain parts of the simulation
+without any hassle.
+
 ## Example
 
 Here a simple example that shows how to approximate pi using monte carlo simulation
 and this little framework
 
-```
+```python
 from mcsim import simulate
 import random
 
-def generate_xy(s, log):
-    """ generate a random point in [0, 1]^2 """
-    s["x"] = random.random()
-    s["y"] = random.random()
-    return s
+def generate_xy(state, config, log):
+    state["x"] = random.random()
+    state["y"] = random.random()
+    return state
 
-def check_in_circle(s, log):
-    """ Check whether the generated point is in circle with radius 1 """
+def check_in_circle(state, config, log):
     circle = False
-    if s["x"]**2 + s["y"]**2 < 1:
+    if state["x"]**2 + state["y"]**2 < 1:
         circle = True
     log["circle"] = circle
-    return s
+    return state
 
-nsim = 5000
+nsim = 50000
 out = simulate([generate_xy, check_in_circle], nsim)
 
-# We note that the area of a unit circle is pi / 4
 approx_pi = 4 * sum(o["circle"] for o in out) / nsim
 print("pi is approximately {}".format(approx_pi))
 ```
+

@@ -38,9 +38,7 @@ from mcsim import simulate
 import random
 
 def generate_xy(state, config, log):
-    state["x"] = random.random()
-    state["y"] = random.random()
-    return state
+    return {"x": random.random(), "y": random.random()}
 
 def check_in_circle(state, config, log):
     circle = False

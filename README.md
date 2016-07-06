@@ -30,8 +30,10 @@ without any hassle.
 
 ## Example
 
+### Approximate pi
+
 Here a simple example that shows how to approximate pi using monte carlo simulation
-and this little framework
+using this little framework
 
 ```python
 from mcsim import simulate
@@ -53,4 +55,5 @@ out = simulate([generate_xy, check_in_circle], nsim)
 approx_pi = 4 * sum(o["circle"] for o in out) / nsim
 print("pi is approximately {}".format(approx_pi))
 ```
+
 

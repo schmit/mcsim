@@ -11,5 +11,5 @@ def unzip_dict(list_of_dicts):
 
     Useful to transform the outcomes of a simulation
     """
-    return {key: [d[key] for d in list_of_dicts] for key in list_op_dicts[0]}
+    return {key: [d[key] for d in list_of_dicts] for key in list_of_dicts[0]}
 

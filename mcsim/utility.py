@@ -66,7 +66,7 @@ def withLogging(name):
     def decorator(method):
         @wraps(method)
         def wrapped_method(state, config, log):
-            out = f(state, config, log)
+            out = method(state, config, log)
             log[name] = out
             return state
 

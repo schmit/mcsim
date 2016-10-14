@@ -14,8 +14,8 @@ def simulate(chain, nsim, config={}, initial_state={}, transformer=identity):
             )
     return transformer(out)
 
-def run_parallel(chain, nsim,
-        nreplica, njob,
+def replicate(chain, nsim,
+        nrepeat, njob=1,
         config={}, initial_state={},
         transformer=identity):
     return Parallel(n_jobs=njob)(
@@ -26,4 +26,4 @@ def run_parallel(chain, nsim,
                 initial_state,
                 transformer
             )
-            for _ in range(nreplica))
+            for _ in range(nrepeat))

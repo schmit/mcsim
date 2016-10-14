@@ -4,7 +4,10 @@ def test_log_state():
     assert False, "Write test"
 
 def test_unzip_dict():
-    assert False, "Write test"
+    test_in = [{"a": 1, "b": 2}, {"a": 3, "b": 4}]
+    test_out = unzip_dict(test_in)
+    assert test_out == {"a": [1, 3], "b": [2, 4]}
+
 
 def test_withLogging():
     def cumbersome(state, config, log):

@@ -23,7 +23,8 @@ def _simulate(chain, nsim, config={}, initial_state={}, transformer=identity):
 def replicate(chain, nsim,
         nrepeat, njob=1,
         config={}, initial_state={},
-        transformer=identity):
+        transformer=identity,
+        verbose=0):
     """
     Replicate simulation multiple times, while dividing up the work across jobs.
 
@@ -43,7 +44,7 @@ def replicate(chain, nsim,
         List with nrepeat outputs of the simulation defined by
         chain, nsim, config and initial_state
     """
-    return Parallel(n_jobs=njob)(
+    return Parallel(n_jobs=njob, verbose=verbose)(
             delayed(_simulate)(
                 chain,
                 nsim,

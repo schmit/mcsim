@@ -83,7 +83,7 @@ def last_location(simulation):
     """
     Return the last location of the random walk
     """
-    return unzip_dict(simulation)["x"][-1]
+    return simulation[-1]["x"]
 
 replicate([random_step], 10,
     nrepeat=20, njob=4,

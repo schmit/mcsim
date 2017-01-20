@@ -28,6 +28,10 @@ where each simulation is a bunch of transformations combined with some logging.
 Hopefully that makes it much easier to change certain parts of the simulation
 without any hassle.
 
+## Requirements
+
+This package requires `joblib` for parallel processing.
+
 ## Examples
 
 ### Approximate pi
